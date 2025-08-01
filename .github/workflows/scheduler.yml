@@ -1,0 +1,74 @@
+name: Run main.py every 15 minutes
+
+on:
+  schedule:
+    - cron: "*/15 13 * * *"
+    - cron: "*/15 14 * * *"
+    - cron: "*/15 15 * * *"
+    - cron: "*/15 16 * * *"
+    - cron: "*/15 17 * * *"
+    - cron: "*/15 18 * * *"
+    - cron: "*/15 19 * * *"
+    - cron: "*/15 20 * * *"
+    - cron: "*/15 21 * * *"
+    - cron: "*/15 22 * * *"
+    - cron: "*/15 23 * * *"
+    - cron: "*/15 0 * * *"
+    - cron: "*/15 1 * * *"
+    - cron: "*/15 2 * * *"
+    - cron: "*/15 3 * * *"
+    - cron: "*/15 4 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write  # Needed to push db file if desired
+
+concurrency:
+  group: traffic-logging
+  cancel-in-progress: true  # Avoid overlapping runs
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Cache pip dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/pyproject.toml') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install .
+
+      - name: Install Chromium
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y chromium-browser chromium-driver
+
+      - name: Run main.py
+        env:
+          DISPLAY: :99  # For headless Chromium
+        run: python main.py
+
+      # Optional: Push updated SQLite DB file back to repo (use with caution)
+      - name: Commit and push updated DB
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git pull origin ${{ github.ref }} --rebase
+          git add data/traffic_logs.db
+          git commit -m "Update traffic_logs.db at $(date -u +'%Y-%m-%dT%H:%M:%SZ')" || echo "No changes to commit"
+          git push origin ${{ github.ref }}

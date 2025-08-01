@@ -1,0 +1,11 @@
+[project]
+name = "inferring_pentagon_activity_from_pizza"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "ipykernel>=6.30.0",
+    "selenium>=4.34.2",
+    "tzdata>=2025.2",
+]
