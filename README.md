@@ -26,17 +26,15 @@ The collected data is stored in an SQLite database (`data/traffic_logs.db`) with
 
 ### Table: `traffic_logs`
 
-| Column | Type | Description |
-|--------|------|-------------|
-| `pizzeria` | TEXT NOT NULL | Name of the pizzeria being monitored |
-| `timestamp` | TIMESTAMP NOT NULL | Date and time when the data was collected |
-| `day_of_week` | TEXT | Day of the week for the timestamp |
-| `hour` | INTEGER | Hour of the day (0-23) |
-| `live_traffic` | INTEGER | Current live busyness percentage (0-100) |
-| `historical_traffic` | INTEGER | Historical/expected busyness for this time |
-| `anomaly` | INTEGER | Automatically calculated difference between live and historical traffic (GENERATED COLUMN) |
-
-The `anomaly` column is a computed field that automatically calculates the difference between live traffic and historical traffic, helping to identify unusual spikes or drops in pizzeria activity that might correlate with Pentagon operations.
+| Column | Description |
+|--------|-------------|
+| `pizzeria` | Name of the pizzeria being monitored |
+| `timestamp` | Date and time when the data was collected |
+| `day_of_week` | Day of the week for the timestamp |
+| `hour` | Hour of the day (0-23) |
+| `live_traffic` | Current live busyness percentage (0-100) |
+| `historical_traffic` | Historical/expected busyness for this time |
+| `anomaly` | Automatically calculated difference between live and historical traffic |
 
 ## Prerequisites
 
@@ -76,23 +74,6 @@ The `anomaly` column is a computed field that automatically calculates the diffe
    - The SQLite file is located at `data/traffic_logs.db`.
    - Use any SQLite client (e.g., `sqlite3`, DB Browser) to query and visualize trends.
 
-## Database
-
-The default schema includes two tables:
-
-- `restaurants`:
-
-  - `id` (INTEGER PRIMARY KEY)
-  - `name` (TEXT)
-  - `google_maps_url` (TEXT)
-
-- `observations`:
-
-  - `id` (INTEGER PRIMARY KEY)
-  - `restaurant_id` (INTEGER, FOREIGN KEY → restaurants.id)
-  - `timestamp` (DATETIME)
-  - `busyness_percent` (INTEGER)
-
 ## Scheduling and Automation
 
 A GitHub Actions workflow (`.github/workflows/scheduler.yml`) runs every 15 minutes:
@@ -129,7 +110,7 @@ jobs:
 
 ## Configuration
 
-- **Target Restaurants**: Edit the list in `main.py` to add or remove Google Maps URLs.
+- **Target Restaurants**: Edit the list in `utils/factory.py` to add or remove Google Maps URLs.
 - **Scrape Interval**: Modify the `cron` expression in the GitHub Actions file to change frequency.
 
 ## Contributing
