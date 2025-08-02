@@ -32,6 +32,11 @@ def create_chrome_driver(headless=True):
     chrome_options.add_argument('--disable-blink-features=AutomationControlled')
     chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
     chrome_options.add_experimental_option("useAutomationExtension", False)
+    chrome_options.add_argument("--lang=fr-FR")
+    chrome_options.add_experimental_option(
+        "prefs",
+        {"intl.accept_languages": "fr-FR,fr"}
+    )
     
     if headless:
         chrome_options.add_argument('--headless=new')
