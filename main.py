@@ -1,7 +1,8 @@
-from utils.factory import near_pizzerias
-from utils.functions import create_chrome_driver, get_live_traffic, log_traffic_data
 from datetime import datetime
 from zoneinfo import ZoneInfo
+
+from utils.factory import near_pizzerias
+from utils.functions import create_chrome_driver, get_live_traffic, log_traffic_data
 
 dc_time = datetime.now(ZoneInfo("America/New_York"))
 dc_time_string = dc_time.strftime("%Y-%m-%d %H:%M:%S")
