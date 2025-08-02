@@ -1,4 +1,4 @@
-## 🍕 Inferring Pentagon Activity from Pizza 🍕
+## Inferring Pentagon Activity from Pizza
 
 This project uses Google Maps' "live busyness" scores for pizzerias surrounding the Pentagon to hunt for patterns that might mirror what's happening inside the building. By regularly scraping these public metrics we can chart pizza demand and compare spikes or dips against notable events.
 
