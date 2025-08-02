@@ -1,6 +1,12 @@
 ## Inferring Pentagon Activity from Pizza
 
-**Inferring Pentagon Activity from Pizza** is an experimental project that attempts to uncover patterns of activity within the Pentagon by monitoring busyness metrics at nearby pizzerias. By collecting public "live busyness" data at regular intervals, we can observe spikes or lulls in pizza demand and consider whether these signals correlate with events or changes inside the Pentagon.
+This project uses Google Maps' "live busyness" scores for pizzerias surrounding the Pentagon to hunt for patterns that might mirror what's happening inside the building. By regularly scraping these public metrics we can chart pizza demand and compare spikes or dips against notable events.
+
+### How It Works
+
+- Every 15 minutes the scraper opens a Google Maps business page for each target restaurant and records the current traffic level.
+- The readings are stored in a local SQLite database, building a historical timeline of activity for each pizza place.
+- Sudden deviations from typical traffic may signal unusual happenings at the nearby Pentagon.
 
 ---
 
@@ -15,10 +21,20 @@ The concept of "pizza intelligence" ("Pizzint") plays on the idea that patterns 
 - **Extensible**: Easily add or remove target restaurants by modifying a configuration list.
 - **Lightweight**: Uses a headless Chromium instance via Selenium to minimize overhead.
 
-## Architecture
+## Project Structure
+
+```
+inferring-pentagon-activity-from-pizza/
+├── main.py              # Orchestrates scraping Google Maps pages and logging results
+├── initialize_db.py     # Creates the SQLite schema used to store traffic data
+├── utils/               # Helper modules for web scraping and data handling
+├── data/                # Contains the `traffic_logs.db` SQLite database
+├── .github/workflows/   # GitHub Actions scheduler that runs the scraper
+└── README.md            # Project documentation
+```
 
 1. **Scraper** (`main.py`): Launches a headless browser, navigates to each Google Maps business profile, extracts the live busyness percentage, and stores it in the database.
-3. **Scheduler** (`.github/workflows/scheduler.yml`): Executes the scraper via GitHub Actions every 15 minutes and optionally commits the updated database.
+2. **Scheduler** (`.github/workflows/scheduler.yml`): Executes the scraper via GitHub Actions every 15 minutes and optionally commits the updated database.
 
 ## Data Storage
 
