@@ -37,13 +37,14 @@ def get_live_traffic(driver, url):
         
         elements = driver.find_elements(By.XPATH, '//div[contains(@class, "dpoVLd")]')
         aria_labels = [el.get_attribute("aria-label") for el in elements if el.get_attribute("aria-label")]
-        print(aria_labels)
+
         live_traffic = next(
             (re.sub(r'\s+', ' ', label) for label in aria_labels if "actuel" in label),
             None
         )
 
         if live_traffic:
+            print(f"Live traffic: {live_traffic}")
             pattern = re.compile(r"Taux de fréquentation actuel de (\d+) % \((\d+) % en général\)\.")
             match = pattern.search(live_traffic)
             if match:
