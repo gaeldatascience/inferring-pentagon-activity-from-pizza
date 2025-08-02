@@ -74,7 +74,7 @@ def get_live_traffic(driver, url):
         
         elements = driver.find_elements(By.XPATH, '//div[contains(@class, "dpoVLd")]')
         aria_labels = [el.get_attribute("aria-label") for el in elements if el.get_attribute("aria-label")]
-
+        print(f"Aria labels found: {aria_labels}")
         live_traffic = next(
             (re.sub(r'\s+', ' ', label) for label in aria_labels if "actuel" in label),
             None
