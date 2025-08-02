@@ -1,6 +1,6 @@
 ## Inferring Pentagon Activity from Pizza
 
-**Inferring Pentagon Activity from Pizza** is an experimental project that attempts to uncover patterns of activity within the Pentagon by monitoring busyness metrics at nearby pizzerias. By collecting public "live busyness" data at regular intervals, we can observe spikes or lulls in pizza demand and consider whether these signals correlate with events or changes inside the Pentagon.
+**This project attempts to uncover patterns of activity within the Pentagon by monitoring busyness metrics at nearby pizzerias. By collecting public "live busyness" data at regular intervals, we can observe spikes or lulls in pizza demand and consider whether these signals correlate with events or changes inside the Pentagon.
 
 ---
 
