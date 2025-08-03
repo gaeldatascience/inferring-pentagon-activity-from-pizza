@@ -4,9 +4,17 @@ This project uses Google Maps' "live busyness" scores for pizzerias surrounding 
 
 ### How It Works
 
-- Every 15 minutes the scraper opens a Google Maps business page for each target restaurant and records the current traffic level.
-- The readings are stored in a local SQLite database, building a historical timeline of activity for each pizza place.
-- Sudden deviations from typical traffic may signal unusual happenings at the nearby Pentagon.
+The project operates through an asynchronous web scraping pipeline that efficiently collects traffic data from multiple Pentagon-area pizzerias:
+
+1. **Browser Context Setup**: Creates a Playwright browser instance with Chromium, configured with French locale and headers optimized for Google Maps scraping.
+
+2. **Concurrent Data Collection**: Navigates to Google Maps business pages for each target pizzeria simultaneously, handling cookie consent dialogs and extracting live traffic percentages.
+
+3. **Data Processing**: Parses French language traffic patterns ("Taux de fréquentation actuel") to extract both current and historical traffic percentages.
+
+4. **Database Logging**: Stores timestamped metrics in a SQLite database, with automatic anomaly calculation to identify unusual activity spikes or drops.
+
+5. **Scheduled Execution**: Runs every 15 minutes during pizzeria operating hours (10am-1pm) when traffic data is available and meaningful for analysis.
 
 ---
 
@@ -14,27 +22,30 @@ This project uses Google Maps' "live busyness" scores for pizzerias surrounding 
 
 The concept of "pizza intelligence" ("Pizzint") plays on the idea that patterns in everyday data—such as orders or foot traffic at pizzerias—could serve as informal indicators of activity in sensitive locations. While this project is intended for educational and exploratory purposes, it showcases how web scraping, data storage, and simple analysis can be combined to reveal hidden trends in publicly available metrics.
 
-## Features
-
-- **Automated Scraping**: Collects live busyness scores for pizzerias around the Pentagon at fixed intervals.
-- **Local Storage**: Persists timestamped metrics in an on-disk SQLite database (`data/traffic_logs.db`).
-- **Extensible**: Easily add or remove target restaurants by modifying a configuration list.
-- **Lightweight**: Uses a headless Chromium instance via Selenium to minimize overhead.
-
 ## Project Structure
 
 ```
 inferring-pentagon-activity-from-pizza/
-├── main.py              # Orchestrates scraping Google Maps pages and logging results
-├── initialize_db.py     # Creates the SQLite schema used to store traffic data
-├── utils/               # Helper modules for web scraping and data handling
-├── data/                # Contains the `traffic_logs.db` SQLite database
-├── .github/workflows/   # GitHub Actions scheduler that runs the scraper
+├── main.py              # Async orchestration: manages browser contexts and concurrent scraping
+├── initialize_db.py     # Database initialization: creates SQLite schema with anomaly detection
+├── utils/               # Core functionality modules
+│   ├── functions.py     # Web scraping functions using Playwright
+│   └── factory.py       # Pizzeria configuration and Google Maps URLs
+├── data/                # SQLite database storage for traffic logs
+├── .github/workflows/   # GitHub Actions automation for scheduled execution
 └── README.md            # Project documentation
 ```
 
-1. **Scraper** (`main.py`): Launches a headless browser, navigates to each Google Maps business profile, extracts the live busyness percentage, and stores it in the database.
-2. **Scheduler** (`.github/workflows/scheduler.yml`): Executes the scraper via GitHub Actions every 15 minutes and optionally commits the updated database.
+### Core Components
+
+1. **Main Orchestrator** (`main.py`): Manages the complete scraping workflow using asyncio for concurrent execution across multiple pizzerias during operating hours.
+
+2. **Web Scraping Engine** (`utils/functions.py`): 
+   - Creates optimized Playwright browser contexts with French locale
+   - Extracts live and historical traffic data from Google Maps aria-labels
+   - Handles cookie consent dialogs and data validation
+
+3. **Data Persistence** (`initialize_db.py` & logging): Maintains SQLite database with automatic anomaly calculation for traffic pattern analysis.
 
 ## Data Storage
 
@@ -56,7 +67,8 @@ The collected data is stored in an SQLite database (`data/traffic_logs.db`) with
 
 - **Python** 3.12 or later
 - **SQLite** (bundled with Python)
-- **Browsers**: Chromium (Headless)
+- **Playwright**: Modern browser automation framework
+- **Chromium**: Automatically installed via Playwright
 
 ## Installation
 
@@ -71,9 +83,10 @@ The collected data is stored in an SQLite database (`data/traffic_logs.db`) with
    source .venv/bin/activate    # macOS/Linux
    .\.venv\Scripts\activate   # Windows
    ```
-3. Install dependencies:
+3. Install dependencies and Playwright browsers:
    ```bash
    pip install -e .
+   playwright install chromium
    ```
 
 ## Usage
@@ -82,10 +95,16 @@ The collected data is stored in an SQLite database (`data/traffic_logs.db`) with
    ```bash
    python initialize_db.py
    ```
-2. **Execute the scraper**:
+2. **Execute the async scraper**:
    ```bash
    python main.py
    ```
+   
+   The scraper will:
+   - Create concurrent browser contexts for each pizzeria
+   - Extract traffic data from French Google Maps pages
+   - Log results to the SQLite database with anomaly detection
+   - Only run during operating hours
 3. **Inspect data**:
    - The SQLite file is located at `data/traffic_logs.db`.
    - Use any SQLite client (e.g., `sqlite3`, DB Browser) to query and visualize trends.
@@ -113,6 +132,7 @@ jobs:
           python -m venv .venv
           source .venv/bin/activate
           pip install -e .
+          playwright install chromium
       - name: Run Scraper
         run: python main.py
       - name: Commit Database (optional)

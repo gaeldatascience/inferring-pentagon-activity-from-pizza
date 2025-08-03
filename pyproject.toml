@@ -6,6 +6,6 @@ readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "ipykernel>=6.30.0",
-    "selenium>=4.34.2",
+    "playwright>=1.54.0",
     "tzdata>=2025.2",
 ]
