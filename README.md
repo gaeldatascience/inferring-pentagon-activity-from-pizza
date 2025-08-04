@@ -20,7 +20,7 @@ The project operates through an asynchronous web scraping pipeline that efficien
 
 ## Motivation
 
-The concept of "pizza intelligence" ("Pizzint") plays on the idea that patterns in everyday data—such as orders or foot traffic at pizzerias—could serve as informal indicators of activity in sensitive locations. While this project is intended for educational and exploratory purposes, it showcases how web scraping, data storage, and simple analysis can be combined to reveal hidden trends in publicly available metrics.
+"Pizza intelligence" ("Pizzint") relies on the hypothesis that late-night gatherings at government sites correlate with increased local pizza delivery activity. Through the collection and analysis of such indirect behavioral signals, it becomes possible to detect anomalies that might suggest operational movements. This project illustrates how public data, when systematically processed, can yield insight into covert activity.
 
 ## Project Structure
 
