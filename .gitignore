@@ -7,6 +7,7 @@ wheels/
 *.egg-info
 .python-version
 print_db.py
+remove_null_db.py
 # Virtual environments
 .venv
 .env
