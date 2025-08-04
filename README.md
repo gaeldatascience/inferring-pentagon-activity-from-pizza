@@ -14,7 +14,7 @@ The project operates through an asynchronous web scraping pipeline that efficien
 
 4. **Database Logging**: Stores timestamped metrics in a SQLite database, with automatic anomaly calculation to identify unusual activity spikes or drops.
 
-5. **Scheduled Execution**: Runs every 15 minutes during pizzeria operating hours (10am-1pm) when traffic data is available and meaningful for analysis.
+5. **Scheduled Execution**: Runs every 15 minutes during pizzeria operating hours (10am-1am) when traffic data is available and meaningful for analysis.
 
 ---
 
@@ -91,11 +91,7 @@ The collected data is stored in an SQLite database (`data/traffic_logs.db`) with
 
 ## Usage
 
-1. **Initialize the database** (run once):
-   ```bash
-   python initialize_db.py
-   ```
-2. **Execute the async scraper**:
+1. **Execute the async scraper**:
    ```bash
    python main.py
    ```
