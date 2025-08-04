@@ -1,6 +1,12 @@
 ## Inferring Pentagon Activity from Pizza
 
-This project uses Google Maps' "live busyness" scores for pizzerias surrounding the Pentagon to hunt for patterns that might mirror what's happening inside the building. By regularly scraping these public metrics we can chart pizza demand and compare spikes or dips against notable events.
+This project explores the potential of using late-night foot traffic at Pentagon-area pizzerias as a proxy indicator of operational activity, leveraging automated Google Maps scraping with Playwright, scheduled every 15 minutes, and persistent logging in a SQLite database.
+
+---
+
+### Motivation
+
+"Pizza intelligence" ("Pizzint") relies on the hypothesis that late-night gatherings at government sites correlate with increased local pizza delivery activity. Through the collection and analysis of such indirect behavioral signals, it becomes possible to detect anomalies that might suggest operational movements. This project illustrates how public data, when systematically processed, can yield insight into covert activity.
 
 ### How It Works
 
@@ -17,10 +23,6 @@ The project operates through an asynchronous web scraping pipeline that efficien
 5. **Scheduled Execution**: Runs every 15 minutes during pizzeria operating hours (10am-1am) when traffic data is available and meaningful for analysis.
 
 ---
-
-## Motivation
-
-"Pizza intelligence" ("Pizzint") relies on the hypothesis that late-night gatherings at government sites correlate with increased local pizza delivery activity. Through the collection and analysis of such indirect behavioral signals, it becomes possible to detect anomalies that might suggest operational movements. This project illustrates how public data, when systematically processed, can yield insight into covert activity.
 
 ## Project Structure
 
