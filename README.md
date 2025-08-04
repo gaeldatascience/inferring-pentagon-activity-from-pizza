@@ -1,26 +1,26 @@
 ## Inferring Pentagon Activity from Pizza
 
-This project explores the potential of using late-night foot traffic at Pentagon-area pizzerias as a proxy indicator of operational activity, leveraging automated Google Maps scraping with Playwright, scheduled every 15 minutes, and persistent logging in a SQLite database.
+This project explores the potential of using late-night foot traffic at **Pentagon-area pizzerias** as a proxy indicator of operational activity, leveraging automated **Google Maps scraping** with **Playwright**, scheduled every 15 minutes, and persistent logging in a **SQLite database**.
 
 ---
 
 ### Motivation
 
-"Pizza intelligence" ("Pizzint") relies on the hypothesis that late-night gatherings at government sites correlate with increased local pizza delivery activity. Through the collection and analysis of such indirect behavioral signals, it becomes possible to detect anomalies that might suggest operational movements. This project illustrates how public data, when systematically processed, can yield insight into covert activity.
+**"Pizza intelligence"** ("Pizzint") relies on the hypothesis that late-night gatherings at government sites correlate with increased local pizza delivery activity. Through the collection and analysis of such indirect behavioral signals, it becomes possible to detect **anomalies** that might suggest operational movements. This project illustrates how **public data**, when systematically processed, can yield insight into covert activity.
 
 ### How It Works
 
-The project operates through an asynchronous web scraping pipeline that efficiently collects traffic data from multiple Pentagon-area pizzerias:
+The project operates through an **asynchronous web scraping pipeline** that efficiently collects traffic data from multiple Pentagon-area pizzerias:
 
-1. **Browser Context Setup**: Creates a Playwright browser instance with Chromium, configured with French locale and headers optimized for Google Maps scraping.
+1. **Browser Context Setup**: Creates a Playwright browser instance with Chromium, configured with **French locale** and headers optimized for Google Maps scraping.
 
-2. **Concurrent Data Collection**: Navigates to Google Maps business pages for each target pizzeria simultaneously, handling cookie consent dialogs and extracting live traffic percentages.
+2. **Concurrent Data Collection**: Navigates to Google Maps business pages for each target pizzeria simultaneously, handling cookie consent dialogs and extracting **live traffic percentages**.
 
-3. **Data Processing**: Parses French language traffic patterns ("Taux de fréquentation actuel") to extract both current and historical traffic percentages.
+3. **Data Processing**: Parses French language traffic patterns (**"Taux de fréquentation actuel"**) to extract both current and historical traffic percentages.
 
-4. **Database Logging**: Stores timestamped metrics in a SQLite database, with automatic anomaly calculation to identify unusual activity spikes or drops.
+4. **Database Logging**: Stores timestamped metrics in a SQLite database, with **automatic anomaly calculation** to identify unusual activity spikes or drops.
 
-5. **Scheduled Execution**: Runs every 15 minutes during pizzeria operating hours (10am-1am) when traffic data is available and meaningful for analysis.
+5. **Scheduled Execution**: Runs every 15 minutes during pizzeria operating hours (**10am-1am**) when traffic data is available and meaningful for analysis.
 
 ---
 
@@ -40,14 +40,14 @@ inferring-pentagon-activity-from-pizza/
 
 ### Core Components
 
-1. **Main Orchestrator** (`main.py`): Manages the complete scraping workflow using asyncio for concurrent execution across multiple pizzerias during operating hours.
+1. **Main Orchestrator** (`main.py`): Manages the complete scraping workflow using **asyncio** for concurrent execution across multiple pizzerias during operating hours.
 
 2. **Web Scraping Engine** (`utils/functions.py`): 
-   - Creates optimized Playwright browser contexts with French locale
-   - Extracts live and historical traffic data from Google Maps aria-labels
+   - Creates optimized Playwright browser contexts with **French locale**
+   - Extracts live and historical traffic data from Google Maps **aria-labels**
    - Handles cookie consent dialogs and data validation
 
-3. **Data Persistence** (`initialize_db.py` & logging): Maintains SQLite database with automatic anomaly calculation for traffic pattern analysis.
+3. **Data Persistence** (`initialize_db.py` & logging): Maintains SQLite database with **automatic anomaly calculation** for traffic pattern analysis.
 
 ## Data Storage
 
@@ -99,7 +99,7 @@ The collected data is stored in an SQLite database (`data/traffic_logs.db`) with
    ```
    
    The scraper will:
-   - Create concurrent browser contexts for each pizzeria
+   - Create concurrent pages for each pizzeria
    - Extract traffic data from French Google Maps pages
    - Log results to the SQLite database with anomaly detection
    - Only run during operating hours
@@ -109,7 +109,7 @@ The collected data is stored in an SQLite database (`data/traffic_logs.db`) with
 
 ## Scheduling and Automation
 
-A GitHub Actions workflow (`.github/workflows/scheduler.yml`) runs every 15 minutes:
+A **GitHub Actions workflow** (`.github/workflows/scheduler.yml`) runs **every 15 minutes**:
 
 ```yaml
 name: Scheduled Traffic Collection
