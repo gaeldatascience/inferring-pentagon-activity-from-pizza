@@ -10,18 +10,19 @@ from utils.functions import (
     create_playwright_context,
 )
 
+
 async def main():
     """Main scraping function that collects traffic data from Pentagon-area pizzerias.
-    
+
     Orchestrates the web scraping process by:
     1. Setting up timestamp and timezone data for Washington DC
     2. Creating browser context and pages for each pizzeria
     3. Concurrently fetching traffic data from all pizzerias
     4. Logging the collected data to the SQLite database
-    
+
     The function only runs during off-peak hours (between 1am and 9am) to avoid
     detection and minimize impact on the monitored websites.
-    
+
     Note:
         Uses asyncio.gather() for concurrent scraping to improve performance
         and reduce total execution time.
@@ -50,6 +51,7 @@ async def main():
                 log_traffic_data(name, ts, dow, hr, live, hist)
 
             await browser.close()
+
 
 if __name__ == "__main__":
     asyncio.run(main())

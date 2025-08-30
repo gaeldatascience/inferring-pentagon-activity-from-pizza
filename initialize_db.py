@@ -5,7 +5,8 @@ cursor = conn.cursor()
 
 cursor.execute("DROP TABLE IF EXISTS traffic_logs")
 
-cursor.execute("""
+cursor.execute(
+    """
 CREATE TABLE traffic_logs (
     pizzeria TEXT NOT NULL,
     timestamp TIMESTAMP NOT NULL,          
@@ -17,7 +18,8 @@ CREATE TABLE traffic_logs (
         live_traffic - historical_traffic
     ) STORED
 );
-""")
+"""
+)
 
 conn.commit()
 cursor.close()
