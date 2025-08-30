@@ -10,5 +10,7 @@ near_pizzerias = {
     "District Pizza Palace":
         "https://www.google.fr/maps/place/District+Pizza+Palace/@38.8527455,-77.0557157,17z/data=!3m1!4b1!4m6!3m5!1s0x89b7b77b2d1e64e3:0x70a3f6ac71ef0a9c!8m2!3d38.8527414!4d-77.0531408!16s%2Fg%2F11vc1fb80v?entry=ttu&g_ep=EgoyMDI1MDcyOS4wIKXMDSoASAFQAw%3D%3D",
     "Bozzelli's Italian Deli":
-        "https://www.google.fr/maps/place/Bozzelli's+Italian+Deli-Crystal+City/@38.8493712,-77.0538204,17z/data=!3m1!4b1!4m6!3m5!1s0x89b7b72b84738d6f:0x9b7e44225412910e!8m2!3d38.8493671!4d-77.0512455!16s%2Fg%2F1vr1xjb9?entry=ttu&g_ep=EgoyMDI1MDcyOS4wIKXMDSoASAFQAw%3D%3D"
+        "https://www.google.fr/maps/place/Bozzelli's+Italian+Deli-Crystal+City/@38.8493712,-77.0538204,17z/data=!3m1!4b1!4m6!3m5!1s0x89b7b72b84738d6f:0x9b7e44225412910e!8m2!3d38.8493671!4d-77.0512455!16s%2Fg%2F1vr1xjb9?entry=ttu&g_ep=EgoyMDI1MDcyOS4wIKXMDSoASAFQAw%3D%3D",
+    "Dominos Pizza":
+        "https://www.google.fr/maps/place/Domino's+Pizza/@38.8627308,-77.0879692,16z/data=!3m1!4b1!4m6!3m5!1s0x89b7b6ba2b02a023:0x15622e1516edc315!8m2!3d38.8627267!4d-77.0853943!16s%2Fg%2F1wbryp46?entry=ttu&g_ep=EgoyMDI1MDgyNS4wIKXMDSoASAFQAw%3D%3D"
 }
