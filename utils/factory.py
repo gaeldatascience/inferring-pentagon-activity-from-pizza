@@ -12,5 +12,7 @@ near_pizzerias = {
     "Bozzelli's Italian Deli":
         "https://www.google.fr/maps/place/Bozzelli's+Italian+Deli-Crystal+City/@38.8493712,-77.0538204,17z/data=!3m1!4b1!4m6!3m5!1s0x89b7b72b84738d6f:0x9b7e44225412910e!8m2!3d38.8493671!4d-77.0512455!16s%2Fg%2F1vr1xjb9?entry=ttu&g_ep=EgoyMDI1MDcyOS4wIKXMDSoASAFQAw%3D%3D",
     "Dominos Pizza":
-        "https://www.google.fr/maps/place/Domino's+Pizza/@38.8627308,-77.0879692,16z/data=!3m1!4b1!4m6!3m5!1s0x89b7b6ba2b02a023:0x15622e1516edc315!8m2!3d38.8627267!4d-77.0853943!16s%2Fg%2F1wbryp46?entry=ttu&g_ep=EgoyMDI1MDgyNS4wIKXMDSoASAFQAw%3D%3D"
+        "https://www.google.fr/maps/place/Domino's+Pizza/@38.8627308,-77.0879692,16z/data=!3m1!4b1!4m6!3m5!1s0x89b7b6ba2b02a023:0x15622e1516edc315!8m2!3d38.8627267!4d-77.0853943!16s%2Fg%2F1wbryp46?entry=ttu&g_ep=EgoyMDI1MDgyNS4wIKXMDSoASAFQAw%3D%3D",
+    "Papa Johns Pizza":
+        "https://www.google.fr/maps/place/Papa+Johns+Pizza/@38.8606862,-77.0948021,17z/data=!3m1!4b1!4m6!3m5!1s0x89b7b77f69c14da3:0xa3bad34a334f286f!8m2!3d38.8606821!4d-77.0922272!16s%2Fg%2F11t104lmtl?entry=ttu&g_ep=EgoyMDI1MDgyNS4wIKXMDSoASAFQAw%3D%3D"
 }
